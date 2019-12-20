@@ -1,0 +1,6 @@
+**/**/*.json
+*.json
+package-lock.json
+package.json
+*.md
+*babel-polyfill.js
