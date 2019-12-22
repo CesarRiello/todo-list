@@ -1,6 +1,8 @@
 import React from 'react'
 import { Box, Text } from './Styles'
 import { CloseBtn, CheckBtn } from 'components/Buttons/'
+import Tag from 'components/Tag/'
+import PropTypes from 'prop-types'
 
 const Task = ({ task, actions }) => {
   task = task || {}
@@ -18,8 +20,10 @@ const Task = ({ task, actions }) => {
           actions.editTask(task)
         }}
       >
-        {task.name} - <span>{task.tag}</span>
+        {task.name}
       </Text>
+
+      <Tag tag={task.tag} position="absolute" />
 
       <CloseBtn
         position="absolute"
@@ -29,6 +33,19 @@ const Task = ({ task, actions }) => {
       />
     </Box>
   )
+}
+
+Task.defaultProps = {
+  task: {
+    name: '',
+    tag: '',
+    isCompleted: false
+  }
+}
+
+Task.propTypes = {
+  actions: PropTypes.object.isRequired,
+  task: PropTypes.string
 }
 
 export default Task

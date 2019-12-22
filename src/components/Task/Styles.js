@@ -6,9 +6,9 @@ export const Box = styled.div`
   padding: 5px;
   color: #808080;
   position: relative;
-  margin: 10px;
+  margin: 10px 0;
   border-radius: 4px;
-  min-height: 50px;
+  min-height: 60px;
   display: flex;
   flex-direction: row;
 `
@@ -18,4 +18,14 @@ export const Text = styled.p`
   vertical-align: middle;
   display: flex;
   align-items: center;
+`
+
+export const NoTask = styled.div`
+  margin: 50px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  text-align: center;
+  justify-content: space-evenly;
 `

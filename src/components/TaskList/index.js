@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import View from './View'
+import PropTypes from 'prop-types'
 
 class TaskList extends Component {
   state = {
@@ -38,15 +39,6 @@ class TaskList extends Component {
     this.props.history.push('/edit')
   }
 
-  //   createTask = () => {
-  //     const task = {
-  //       id: '',
-  //       name: '',
-  //       isCompleted: false
-  //     }
-  //     this.setParentState({task})
-  //   }
-
   updateTask = task => {
     const tasks = this.props.tasks.map(t => (t.id === task.id ? task : t))
     this.setParentState({ tasks })
@@ -72,6 +64,24 @@ class TaskList extends Component {
       />
     )
   }
+}
+
+TaskList.defaultProps = {
+  task: {
+    name: '',
+    tag: '',
+    isCompleted: false
+  },
+  tags: [],
+  tasks: []
+}
+
+TaskList.propTypes = {
+  task: PropTypes.object,
+  tags: PropTypes.array,
+  tasks: PropTypes.array,
+  setParentState: PropTypes.func.isRequired,
+  history: PropTypes.func.isRequired
 }
 
 export default TaskList

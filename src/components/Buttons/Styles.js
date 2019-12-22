@@ -6,6 +6,8 @@ export const Button = styled.button`
   color: black;
   padding: 4px 5px;
   border-radius: 3px;
+  font-size: 14px;
+  margin-top: 5px;
 
   &:hover {
     opacity: 0.6;
@@ -24,13 +26,14 @@ export const Button = styled.button`
 `
 export const Close = styled(Button)`
   position: ${({ position }) => position || 'static'};
-  right: 2px;
+  right: 5px;
   top: 5px;
-  font-size: 14px;
+  padding: 0;
+  margin: 0;
 `
 
 export const Check = styled(Button)`
-  position: absolute;
+  position: ${({ position }) => position || 'static'};
   left: 5px;
   top: 10px;
   font-size: 22px;

@@ -1,34 +1,29 @@
-import React, { Fragment } from 'react'
-import { Row, Column, Col1, Col6 } from 'components/Grid'
-
-import { CustomSelectWrap, CustomSelect } from '../Inputs/Styles'
-import { Select } from '../Inputs'
+import React from 'react'
+import { Row, Column } from 'components/Grid'
+import TagDropDown from 'components/TagDropDown'
+import { Label } from '../Inputs'
+import PropTypes from 'prop-types'
 
 const FilterTags = ({ tag, tags, setTag }) => (
   <Row>
-    <Col1>
-      <i className="fa fa-tag"></i>
-    </Col1>
-    <Col6>
-      {tags.length && (
-        <Select
-          name="tags"
-          initialValue={tag}
-          handleChange={e => {
-            let tag = e.target.value
-            setTag({ tag })
-          }}
-        >
-          {[{ id: '0', tag: '' }, ...tags].map(t => (
-            <option key={t.id} value={t.tag}>
-              {t.tag}
-            </option>
-          ))}
-        </Select>
-
-      )}
-    </Col6>
+    <Column>
+      <Label htmlFor="all" block>
+        <i className="fa fa-tag"></i> Tag
+      </Label>
+      <TagDropDown tag={tag} tags={tags} setTag={setTag} />
+    </Column>
   </Row>
 )
+
+FilterTags.defaultProps = {
+  tags: [],
+  tag: ''
+}
+
+FilterTags.propTypes = {
+  setTag: PropTypes.func.isRequired,
+  tags: PropTypes.array,
+  tag: PropTypes.string
+}
 
 export default FilterTags

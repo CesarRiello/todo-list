@@ -10,9 +10,7 @@ const Box = styled.div`
   box-shadow: ${style.shadow};
 
   ${media.desktop`
-    /* max-width: 400px; */
     border-radius: 6px;
-    /* margin: 10px auto; */
   `}
 `
 

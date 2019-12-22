@@ -23,7 +23,7 @@ export const Column = styled.div`
   flex-shrink: 1;
   flex-basis: 1;
 
-  padding: 10px;
+  padding: 5px;
 
   ${media.mobile`
     min-width: 100%;

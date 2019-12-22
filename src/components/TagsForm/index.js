@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import View from './View'
+import PropTypes from 'prop-types'
 
 class TagSForm extends Component {
   state = {
@@ -37,6 +38,20 @@ class TagSForm extends Component {
       />
     )
   }
+}
+
+TagSForm.defaultProps = {
+  tag: '',
+  tags: []
+}
+
+TagSForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  setParentState: PropTypes.func.isRequired,
+  saveTag: PropTypes.func.isRequired,
+  removeTag: PropTypes.func.isRequired,
+  tag: PropTypes.string,
+  tags: PropTypes.array
 }
 
 export default TagSForm

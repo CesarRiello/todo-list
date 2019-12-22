@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import Subtitle from 'components/Subtitle'
+import PropTypes from 'prop-types'
 
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,4 +17,14 @@ const Accordion = ({ title, children }) => {
     </Fragment>
   )
 }
+
+Accordion.defaultProps = {
+  title: ''
+}
+
+Accordion.propTypes = {
+  children: PropTypes.object.isRequired,
+  title: PropTypes.string
+}
+
 export default Accordion

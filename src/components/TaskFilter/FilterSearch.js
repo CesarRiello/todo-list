@@ -1,27 +1,36 @@
-import React, { Fragment } from 'react'
-import { CustomSelectWrap, CustomSelect } from '../Inputs/Styles'
-import Box from 'components/Box'
-import Subtitle from 'components/Subtitle'
+import React from 'react'
 import { InputText, Label } from 'components/Inputs'
-import { Row, Column, Col1, Col6 } from 'components/Grid'
-import FilterStatus from './FilterStatus'
+import { Row, Column } from 'components/Grid'
+import PropTypes from 'prop-types'
 
 const FilterSearch = ({ search, setSearch }) => (
   <Row>
-    <Col1>
-      <i className="fa fa-search"></i>
-    </Col1>
-    <Col6>
+    <Column>
+      <Label htmlFor="search" block>
+        <i className="fa fa-search"></i> Task text
+      </Label>
+
       <InputText
+        block
         name="search"
+        id="search"
         value={search}
         onChange={e => {
           let search = e.target.value
           setSearch({ search })
         }}
       />
-    </Col6>
+    </Column>
   </Row>
 )
+
+FilterSearch.defaultProps = {
+  search: ''
+}
+
+FilterSearch.propTypes = {
+  setSearch: PropTypes.func.isRequired,
+  search: PropTypes.string
+}
 
 export default FilterSearch

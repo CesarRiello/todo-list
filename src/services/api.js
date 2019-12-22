@@ -1,5 +1,6 @@
 import axios from 'axios'
-const endPoint = 'http://czare.com.br/todo-api/'
+// const endPoint = 'http://czare.com.br/todo-api/'
+const endPoint = 'http://localhost:4000/'
 
 const taskMapper = {
   id: '',
@@ -13,13 +14,11 @@ const taskMapper = {
   forecast: ''
 }
 
-
 const tagMapper = {
   id: '',
   tag: '',
   created: ''
 }
-
 
 const taskFromApi = (task, mapper) => ({
   ...mapper,
@@ -30,10 +29,8 @@ const taskFromApi = (task, mapper) => ({
 
 const tagFromApi = (tag, mapper) => ({
   ...mapper,
-  ...tag,
+  ...tag
 })
-
-
 
 export const get = resource => axios.get(`${endPoint}${resource}`)
 

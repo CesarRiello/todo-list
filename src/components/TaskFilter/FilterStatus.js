@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'components/Buttons'
-import { Row, Column, Col1, Col6 } from 'components/Grid'
-import { InputText, Label } from 'components/Inputs'
+import { Row, Column } from 'components/Grid'
+import { Label } from 'components/Inputs'
+import PropTypes from 'prop-types'
 
 const FilterStatus = ({ status, setStatus }) => (
   <Row>
@@ -25,5 +26,14 @@ const FilterStatus = ({ status, setStatus }) => (
     </Column>
   </Row>
 )
+
+FilterStatus.defaultProps = {
+  status: 'all'
+}
+
+FilterStatus.propTypes = {
+  setStatus: PropTypes.func.isRequired,
+  status: PropTypes.string
+}
 
 export default FilterStatus

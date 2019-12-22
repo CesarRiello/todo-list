@@ -6,6 +6,12 @@ export const Label = styled.label`
   ${({ block }) => (block ? `display: block;` : `display: inline-block;`)}
 `
 
+export const ErrorLabel = styled.label`
+  color: red;
+  font-size: 12px;
+  display: block;
+`
+
 export const Text = styled.input`
   border: 1px solid black;
   color: black;
@@ -26,7 +32,6 @@ export const Text = styled.input`
 
 export const CustomSelectWrap = styled.label`
   border: 1px solid black;
-  margin: 5px;
   border-radius: 4px;
   position: relative;
   &::after {
@@ -35,11 +40,19 @@ export const CustomSelectWrap = styled.label`
     font-weight: 900;
     content: '\f078';
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 7px;
+    top: 7px;
     z-index: 10;
     font-size: 12px;
     pointer-events: none;
+    ${({ block }) =>
+      block
+        ? `
+      display: block;
+      width: 100%;`
+        : `
+      display: inline-block;
+      `}
   }
 `
 export const CustomSelect = styled.select`
@@ -48,7 +61,15 @@ export const CustomSelect = styled.select`
   -moz-appearance: none;
   border: none;
   color: black;
-  padding: 4px;
+  padding: 5px 30px 5px 10px;
   background: transparent;
   font-size: 14px;
+  ${({ block }) =>
+    block
+      ? `
+      display: block;
+      width: 100%;`
+      : `
+      display: inline-block;
+      `}
 `
