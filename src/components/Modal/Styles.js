@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import style from 'components/helpers/style'
 
 export const Blind = styled.div`
   background: rgba(0, 0, 0, 0.7);
@@ -14,17 +15,17 @@ export const Blind = styled.div`
 `
 
 export const Box = styled.div`
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: ${style.shadow};
   position: relative;
-  background: white;
-  color: #808080;
+  background: ${style.color.white};
+  color: ${style.color.grayStrong};
   margin: 0 20px;
   border-radius: 4px;
   width: 100%;
 `
 
 export const Title = styled.h2`
-  font-size: 18px;
+  font-size: pxRem(18);
   margin: 10px 0 0 10px;
 `
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import View from './View'
 import PropTypes from 'prop-types'
+import { deleteTask, updateTask } from 'services/api'
 
 class TaskList extends Component {
   state = {
@@ -29,29 +30,41 @@ class TaskList extends Component {
       .reverse()
   }
 
-  removeTask = id => {
-    const tasks = this.props.tasks.filter(t => t.id !== id)
-    this.setParentState({ tasks })
+  remove = task => {
+    deleteTask(
+      task,
+      () => {
+        const tasks = this.props.tasks.filter(t => t.id !== task.id)
+        this.setParentState({ tasks })
+      },
+      console.error
+    )
   }
 
-  editTask = task => {
+  edit = task => {
     this.setParentState({ task })
     this.props.history.push('/edit')
   }
 
-  updateTask = task => {
-    const tasks = this.props.tasks.map(t => (t.id === task.id ? task : t))
-    this.setParentState({ tasks })
+  update = task => {
+    updateTask(
+      task,
+      () => {
+        const tasks = this.props.tasks.map(t => (t.id === task.id ? task : t))
+        this.setParentState({ tasks })
+      },
+      console.error
+    )
   }
 
   setFilter = filter => this.setState(filter)
 
   render() {
     const actions = {
-      removeTask: this.removeTask,
-      editTask: this.editTask,
-      createTask: this.createTask,
-      updateTask: this.updateTask,
+      remove: this.remove,
+      edit: this.edit,
+      create: this.create,
+      update: this.update,
       setFilter: this.setFilter
     }
 
@@ -81,7 +94,7 @@ TaskList.propTypes = {
   tags: PropTypes.array,
   tasks: PropTypes.array,
   setParentState: PropTypes.func.isRequired,
-  history: PropTypes.func.isRequired
+  history: PropTypes.any.isRequired
 }
 
 export default TaskList

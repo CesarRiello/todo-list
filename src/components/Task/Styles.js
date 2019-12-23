@@ -1,10 +1,12 @@
 import styled from 'styled-components'
+import style from 'components/helpers/style'
+import pxRem from 'components/helpers/pxRem'
 
 export const Box = styled.div`
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  background: white;
+  box-shadow: ${style.shadow};
+  background: ${style.color.white};
   padding: 5px;
-  color: #808080;
+  color: ${style.color.grayStrong};
   position: relative;
   margin: 10px 0;
   border-radius: 4px;
@@ -13,11 +15,14 @@ export const Box = styled.div`
   flex-direction: row;
 `
 
-export const Text = styled.p`
-  margin: 0 15px 0 29px;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
+export const TaskName = styled.p`
+  text-align: left;
+  font-size: ${pxRem(15)};
+`
+
+export const TaskDate = styled.p`
+  text-align: left;
+  font-size: ${pxRem(13)};
 `
 
 export const NoTask = styled.div`
@@ -25,7 +30,7 @@ export const NoTask = styled.div`
   vertical-align: middle;
   display: flex;
   align-items: center;
-  font-size: 28px;
+  font-size: ${pxRem(28)};
   text-align: center;
   justify-content: space-evenly;
 `

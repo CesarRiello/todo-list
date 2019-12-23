@@ -1,6 +1,7 @@
 import axios from 'axios'
-// const endPoint = 'http://czare.com.br/todo-api/'
-const endPoint = 'http://localhost:4000/'
+import { stringify } from 'qs'
+
+const endPoint = 'https://www.czare.com.br/todo-api/'
 
 const taskMapper = {
   id: '',
@@ -32,6 +33,11 @@ const tagFromApi = (tag, mapper) => ({
   ...tag
 })
 
+const taskToApi = task => {
+  const remind = (new Date(task.forecast) || new Date()).getDate() + Number(task.remind)
+  return { ...task, remind }
+}
+
 export const get = resource => axios.get(`${endPoint}${resource}`)
 
 export const getTasks = (sucess, error) => {
@@ -48,6 +54,51 @@ export const getTasks = (sucess, error) => {
     })
 }
 
+export const saveTask = (task, sucess, error) => {
+  const options = {
+    method: 'POST',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    data: stringify({ ...taskToApi(task) }),
+    url: `${endPoint}tasks`
+  }
+
+  axios(options)
+    .then(response => {
+      sucess(response)
+    })
+    .catch(e => {
+      error(e)
+    })
+}
+
+export const updateTask = (task, sucess, error) => {
+  const options = {
+    method: 'PUT',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    data: stringify({ ...task }),
+    url: `${endPoint}tasks/${task.id}`
+  }
+
+  axios(options)
+    .then(response => {
+      sucess(response)
+    })
+    .catch(e => {
+      error(e)
+    })
+}
+
+export const deleteTask = (task, sucess, error) => {
+  axios
+    .delete(`${endPoint}tasks/${task.id}`)
+    .then(response => {
+      sucess(response)
+    })
+    .catch(e => {
+      error(e)
+    })
+}
+
 export const getTags = (sucess, error) => {
   axios
     .get(`${endPoint}tags`)
@@ -56,6 +107,51 @@ export const getTags = (sucess, error) => {
         const tags = response.data.map(t => tagFromApi(t, tagMapper))
         sucess({ tags })
       }
+    })
+    .catch(e => {
+      error(e)
+    })
+}
+
+export const saveTag = (tag, sucess, error) => {
+  const options = {
+    method: 'POST',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    data: stringify({ ...tag }),
+    url: `${endPoint}tags`
+  }
+
+  axios(options)
+    .then(response => {
+      sucess(response)
+    })
+    .catch(e => {
+      error(e)
+    })
+}
+
+export const updateTag = (tag, sucess, error) => {
+  const options = {
+    method: 'PUT',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    data: stringify({ ...tag }),
+    url: `${endPoint}tags/${tag.id}`
+  }
+
+  axios(options)
+    .then(response => {
+      sucess(response)
+    })
+    .catch(e => {
+      error(e)
+    })
+}
+
+export const deleteTag = (tag, sucess, error) => {
+  axios
+    .delete(`${endPoint}tags/${tag.id}`)
+    .then(response => {
+      sucess(response)
     })
     .catch(e => {
       error(e)

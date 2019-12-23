@@ -13,7 +13,7 @@ const View = ({ actions, task, tags, errors }) => (
     <form
       onSubmit={e => {
         e.preventDefault()
-        actions.saveTask()
+        actions.save()
       }}
     >
       <Row>
@@ -58,7 +58,7 @@ const View = ({ actions, task, tags, errors }) => (
           <InputText
             id="forecast"
             name="forecast"
-            isInvalid={!!(errors.forecast || '')}
+            // isInvalid={!!(errors.forecast || '')}
             value={task.forecast}
             onChange={e => {
               actions.handleChange({
@@ -78,23 +78,32 @@ const View = ({ actions, task, tags, errors }) => (
           <Label block>
             <i className="fa fa-alarm"></i> Reminder
           </Label>
-          <RemindDropDown value={task.remind} onChange={actions.handleChange} />
+          <RemindDropDown value={task.remind} handleChange={actions.handleChange} />
         </Column>
       </Row>
 
-      <Row>
-        <Column>
-          <Label block>
-            <i className="fa fa-check"></i> Status
-          </Label>
+      {task.id && (
+        <Row>
+          <Column>
+            <Label block>
+              <i className="fa fa-check"></i> Status
+            </Label>
 
-          <CheckBtn
-            label={task.isCompleted ? 'completed' : 'active'}
-            checked={task.isCompleted}
-            onChange={actions.handleChange}
-          />
-        </Column>
-      </Row>
+            <CheckBtn
+              label={task.isCompleted ? 'completed' : 'active'}
+              checked={task.isCompleted}
+              toggle={checked =>
+                actions.handleChange({
+                  target: {
+                    name: 'isCompleted',
+                    value: checked
+                  }
+                })
+              }
+            />
+          </Column>
+        </Row>
+      )}
 
       <hr />
 
@@ -107,10 +116,11 @@ View.defaultProps = {
   task: {
     name: '',
     tag: '',
-    isCompleted: false
+    isCompleted: false,
+    remind: ''
   },
   tags: [],
-  errors: {}
+  errors: { forecast: '' }
 }
 
 View.propTypes = {

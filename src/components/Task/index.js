@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Text } from './Styles'
-import { CloseBtn, CheckBtn } from 'components/Buttons/'
+import { Box, TaskDate, TaskName } from './Styles'
+import { CloseBtn, CheckBtn, Button } from 'components/Buttons/'
 import Tag from 'components/Tag/'
 import PropTypes from 'prop-types'
 
@@ -11,24 +11,26 @@ const Task = ({ task, actions }) => {
       <CheckBtn
         checked={task.isCompleted}
         toggle={() => {
-          actions.updateTask({ ...task, isCompleted: !task.isCompleted })
+          actions.update({ ...task, isCompleted: !task.isCompleted })
         }}
       />
 
-      <Text
+      <Button
+        block
         onClick={() => {
-          actions.editTask(task)
+          actions.edit(task)
         }}
       >
-        {task.name}
-      </Text>
+        <TaskName>{task.name}</TaskName>
+        <TaskDate>{task.forecast}</TaskDate>
+      </Button>
 
       <Tag tag={task.tag} position="absolute" />
 
       <CloseBtn
         position="absolute"
         close={() => {
-          actions.removeTask(task.id)
+          actions.remove(task)
         }}
       />
     </Box>
@@ -45,7 +47,7 @@ Task.defaultProps = {
 
 Task.propTypes = {
   actions: PropTypes.object.isRequired,
-  task: PropTypes.string
+  task: PropTypes.object
 }
 
 export default Task

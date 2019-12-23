@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import TaskForm from 'components/TaskForm'
 import { TaskConsumer } from 'components/Context'
 import Title from 'components/Title'
@@ -7,14 +7,27 @@ import PropTypes from 'prop-types'
 
 const TaskEdit = ({ history }) => (
   <Main>
-    <Title>Edit Task</Title>
-
-    <TaskConsumer>{props => <TaskForm {...props} history={history} />}</TaskConsumer>
+    <TaskConsumer>
+      {props => (
+        <Fragment>
+          <Title>{props.task.id ? 'Edit' : 'Create'} Task</Title>
+          <TaskForm {...props} history={history} />
+        </Fragment>
+      )}
+    </TaskConsumer>
   </Main>
 )
 
+TaskEdit.defaultProps = {
+  task: {
+    id: '',
+    name: '',
+    isCompleted: false
+  }
+}
 TaskEdit.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  task: PropTypes.object
 }
 
 export default TaskEdit

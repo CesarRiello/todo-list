@@ -1,14 +1,15 @@
 import styled from 'styled-components'
+import pxRem from 'components/helpers/pxRem'
 
 export const Label = styled.label`
   color: gray;
-  font-size: 14px;
+  font-size: ${pxRem(14)};
   ${({ block }) => (block ? `display: block;` : `display: inline-block;`)}
 `
 
 export const ErrorLabel = styled.label`
   color: red;
-  font-size: 12px;
+  font-size: ${pxRem(12)};
   display: block;
 `
 
@@ -17,7 +18,7 @@ export const Text = styled.input`
   color: black;
   padding: 5px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: ${pxRem(14)};
   flex-grow: 1;
 
   ${({ block }) =>
@@ -43,16 +44,8 @@ export const CustomSelectWrap = styled.label`
     right: 7px;
     top: 7px;
     z-index: 10;
-    font-size: 12px;
+    font-size: ${pxRem(12)};
     pointer-events: none;
-    ${({ block }) =>
-      block
-        ? `
-      display: block;
-      width: 100%;`
-        : `
-      display: inline-block;
-      `}
   }
 `
 export const CustomSelect = styled.select`
@@ -63,7 +56,7 @@ export const CustomSelect = styled.select`
   color: black;
   padding: 5px 30px 5px 10px;
   background: transparent;
-  font-size: 14px;
+  font-size: ${pxRem(14)};
   ${({ block }) =>
     block
       ? `

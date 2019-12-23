@@ -1,12 +1,14 @@
 import styled from 'styled-components'
+import style from 'components/helpers/style'
+import pxRem from 'components/helpers/pxRem'
 
 export const Button = styled.button`
   border: none;
   background: none;
-  color: black;
+  color: ${style.color.textColor};
   padding: 4px 5px;
   border-radius: 3px;
-  font-size: 14px;
+  font-size: ${pxRem(14)};
   margin-top: 5px;
 
   &:hover {
@@ -34,17 +36,15 @@ export const Close = styled(Button)`
 
 export const Check = styled(Button)`
   position: ${({ position }) => position || 'static'};
-  left: 5px;
-  top: 10px;
-  font-size: 22px;
+  font-size: ${pxRem(22)};
 `
 
 export const Primary = styled(Button)`
-  background: #212121;
+  background: ${style.color.textColor};
   border: 1px solid black;
-  color: white;
+  color: ${style.color.white};
   padding: 5px 10px;
   font-weight: 500px;
-  font-size: 14px;
+  font-size: ${pxRem(14)};
   border-radius: 3px;
 `

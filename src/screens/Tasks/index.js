@@ -13,7 +13,7 @@ const Tasks = ({ history }) => (
 )
 
 Tasks.propTypes = {
-  history: PropTypes.func.isRequired
+  history: PropTypes.object.isRequired
 }
 
 export default Tasks

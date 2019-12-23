@@ -6,12 +6,12 @@ import Tag from 'components/Tag'
 import { Row, Column, Col3 } from 'components/Grid'
 import PropTypes from 'prop-types'
 
-const View = ({ tag, tags, handleChange, saveTag, removeTag }) => (
+const View = ({ tag, tags, handleChange, save, remove }) => (
   <Box>
     <form
       onSubmit={e => {
         e.preventDefault()
-        saveTag()
+        save()
       }}
     >
       <Row>
@@ -28,7 +28,7 @@ const View = ({ tag, tags, handleChange, saveTag, removeTag }) => (
     </form>
 
     {(tags || []).sort().map(t => (
-      <Tag key={t.id} tag={t.tag} remove={() => removeTag(t)} />
+      <Tag key={t.tag} tag={t.tag} remove={() => remove(t)} />
     ))}
   </Box>
 )
@@ -40,8 +40,8 @@ View.defaultProps = {
 
 View.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  saveTag: PropTypes.func.isRequired,
-  removeTag: PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
   tag: PropTypes.string,
   tags: PropTypes.array
 }

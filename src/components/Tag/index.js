@@ -12,11 +12,12 @@ const Tag = ({ tag, remove, position }) => (
 
 Tag.defaultProps = {
   tag: '',
-  position: ''
+  position: '',
+  remove: undefined
 }
 
 Tag.propTypes = {
-  remove: PropTypes.func.isRequired,
+  remove: PropTypes.func,
   tag: PropTypes.string,
   position: PropTypes.string
 }

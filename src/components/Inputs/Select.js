@@ -2,9 +2,9 @@ import React from 'react'
 import { CustomSelect, CustomSelectWrap } from './Styles'
 import PropTypes from 'prop-types'
 
-const Select = ({ name, initialValue, handleChange, children, block }) => (
+const Select = ({ name, value, handleChange, children, block }) => (
   <CustomSelectWrap block>
-    <CustomSelect name={name} value={initialValue} onChange={handleChange} block={block}>
+    <CustomSelect name={name} value={value} onChange={handleChange} block={block}>
       {children}
     </CustomSelect>
   </CustomSelectWrap>
@@ -12,15 +12,16 @@ const Select = ({ name, initialValue, handleChange, children, block }) => (
 
 Select.defaultProps = {
   name: '',
-  initialValue: '',
-  block: false
+  value: '',
+  block: false,
+  children: []
 }
 
 Select.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.array,
   name: PropTypes.string,
-  initialValue: PropTypes.string,
+  value: PropTypes.string,
   block: PropTypes.bool
 }
 

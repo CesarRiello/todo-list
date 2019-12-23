@@ -3,10 +3,12 @@ import { Check } from './Styles'
 import { Label } from 'components/Inputs/'
 import PropTypes from 'prop-types'
 
-const CheckBtn = ({ toggle, checked, label }) => (
+const CheckBtn = ({ toggle, checked, label, position }) => (
   <Fragment>
     <Check
-      position={label ? 'inline-block' : 'absolute'}
+      id="isCompleted"
+      name="isCompleted"
+      position={position}
       aria-label="check"
       onClick={() => {
         toggle(!checked)
@@ -15,7 +17,7 @@ const CheckBtn = ({ toggle, checked, label }) => (
       <i className={`fa fa-${checked ? 'check-' : ''}square-o`} aria-hidden="true"></i>
     </Check>
 
-    {label && <Label>{label}</Label>}
+    {label && <Label htmlFor="isCompleted">{label}</Label>}
   </Fragment>
 )
 

@@ -19,15 +19,15 @@ const timeInTimeStamp = {
 }
 
 const remindRange = [
-  { label: '', time: 0 },
-  { label: 'Five minutes', time: timeInTimeStamp.m * 5 },
-  { label: 'One hour', time: timeInTimeStamp.h * 2 },
-  { label: 'A day before', time: timeInTimeStamp.d },
-  { label: 'A week before', time: timeInTimeStamp.w }
+  { label: 'None', time: String(0) },
+  { label: 'Five minutes', time: String(timeInTimeStamp.m * 5) },
+  { label: 'One hour', time: String(timeInTimeStamp.h * 2) },
+  { label: 'A day before', time: String(timeInTimeStamp.d) },
+  { label: 'A week before', time: String(timeInTimeStamp.w) }
 ]
 
-const RemindDropDown = ({ setParentState, value }) => (
-  <Select name="remind" id="remind" handleChange={setParentState} value={value}>
+const RemindDropDown = ({ handleChange, value }) => (
+  <Select name="remind" id="remind" handleChange={handleChange} value={value}>
     {remindRange.map(t => (
       <option key={t.time} value={t.time}>
         {t.label}
@@ -41,7 +41,7 @@ RemindDropDown.defaultProps = {
 }
 
 RemindDropDown.propTypes = {
-  setParentState: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   value: PropTypes.string
 }
 

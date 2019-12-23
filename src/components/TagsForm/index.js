@@ -1,26 +1,44 @@
 import React, { Component } from 'react'
 import View from './View'
 import PropTypes from 'prop-types'
+import uuidGenerator from 'components/helpers/uuidGenerator'
+import slugify from 'components/helpers/slugify'
+import { saveTag, deleteTag } from 'services/api'
 
-class TagSForm extends Component {
+class TagsForm extends Component {
   state = {
     tag: ''
   }
 
   setParentState = this.props.setParentState
 
-  removeTag = tag => {
+  remove = tag => {
     const tags = this.props.tags.filter(t => t !== tag)
 
-    this.setParentState({ tags })
-    this.setState({ tag: '' })
+    deleteTag(
+      tag,
+      () => {
+        this.setParentState({ tags })
+        this.setState({ tag: '' })
+      },
+      console.error
+    )
   }
 
-  saveTag = () => {
+  save = () => {
     if (!this.state.tag || this.props.tags.includes(this.state.tag)) return
 
-    this.setParentState({ tags: [...this.props.tags, this.state.tag] })
-    this.setState({ tag: '' })
+    const tag = { tag: slugify(this.state.tag), id: uuidGenerator() }
+
+    saveTag(
+      tag,
+      () => {
+        const tags = [...this.props.tags, tag]
+        this.setParentState({ tags })
+        this.setState({ tag: '' })
+      },
+      console.error
+    )
   }
 
   handleChange = e => {
@@ -33,25 +51,22 @@ class TagSForm extends Component {
         {...this.state}
         tags={this.props.tags}
         handleChange={this.handleChange}
-        saveTag={this.saveTag}
-        removeTag={this.removeTag}
+        save={this.save}
+        remove={this.remove}
       />
     )
   }
 }
 
-TagSForm.defaultProps = {
+TagsForm.defaultProps = {
   tag: '',
   tags: []
 }
 
-TagSForm.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+TagsForm.propTypes = {
   setParentState: PropTypes.func.isRequired,
-  saveTag: PropTypes.func.isRequired,
-  removeTag: PropTypes.func.isRequired,
   tag: PropTypes.string,
   tags: PropTypes.array
 }
 
-export default TagSForm
+export default TagsForm

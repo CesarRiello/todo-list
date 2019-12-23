@@ -6,7 +6,7 @@ const Navigation = styled.nav`
   display: flex;
   justify-content: space-around;
   color: white;
-  font-size: 15px;
+  font-size: pxRem(15);
   a {
     display: inline-block;
     padding: 5px;

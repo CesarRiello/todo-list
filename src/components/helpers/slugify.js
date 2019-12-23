@@ -1,12 +1,12 @@
-export const slugify = enterString =>
+const slugify = enterString =>
   enterString
     .trim()
     .toLowerCase()
     .replace(/^\s+|\s+$/g, '')
     .split('')
     .map(c => {
-      const from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;'.split('')
-      const to = 'aaaaeeeeiiiioooouuuunc------'.split('')
+      const from = 'ãàáäâèéëêìíïîòóöôõùúüûñç·/_,:;'.split('')
+      const to = 'aaaaaeeeeiiiiooooouuuunc------'.split('')
       const index = from.indexOf(c)
       return index > -1 ? to[index] : c
     })
@@ -14,3 +14,5 @@ export const slugify = enterString =>
     .replace(/[^a-z0-9 -]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
+
+export default slugify

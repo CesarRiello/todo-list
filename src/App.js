@@ -18,7 +18,8 @@ class App extends Component {
     task: {
       id: '',
       name: '',
-      isCompleted: false
+      isCompleted: false,
+      remind: ''
     },
     error: ''
   }
@@ -34,10 +35,7 @@ class App extends Component {
 
   componentDidMount() {
     getTasks(this.setParentState, this.toast)
-    getTags(x => {
-      console.log(x)
-      this.setState(x)
-    }, this.toast)
+    getTags(this.setParentState, this.toast)
   }
 
   render() {
