@@ -11,7 +11,6 @@ Você também pode conferir o [Demo online](https://czare.com.br/tasks).
 
 
 ## Instalação
-
 Para rodar você precisa ter o [node e npm](https://www.nodejs.com) instalados.
 Ai é só entrar na pasta e executar.
 ### `npm start`
@@ -23,3 +22,11 @@ Rodando os testes
 
 Gerando a versão de produção
 ### `npm run build`
+
+
+## TODO
+- Filtro de data
+- Envio de lembrete com service worker
+- Estatísticas de tags e tempo das tasks
+- Cache de estáticos
+- Estratégia de cache para network
