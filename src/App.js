@@ -49,7 +49,7 @@ class App extends Component {
         <Header />
         <GlobalStyles />
         <Navigation>
-          <NavLink to="/" activeClassName="selected">
+          <NavLink exact to="/" activeClassName="selected">
             Tasks
           </NavLink>
           <NavLink to="/edit" activeClassName="selected">

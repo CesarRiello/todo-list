@@ -5,7 +5,7 @@ import Accordion from 'components/Accordion'
 import FilterStatus from './FilterStatus'
 import FilterSearch from './FilterSearch'
 import FilterTags from './FilterTags'
-import FilterDate from './FilterDate'
+// import FilterDate from './FilterDate'
 import PropTypes from 'prop-types'
 
 const TaskFilter = ({ tags, filters, actions }) => (

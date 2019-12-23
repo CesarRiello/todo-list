@@ -4,7 +4,7 @@ import style from 'components/helpers/style'
 export const TagWrap = styled.div`
   display: ${({ hasRemove }) => (hasRemove ? 'block' : 'inline-block')};
   position: ${({ position }) => position || 'relative'};
-  margin: 5px;
+  margin: 10px 5px;
   right: 2px;
   bottom: 5px;
 `
