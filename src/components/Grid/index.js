@@ -28,7 +28,7 @@ export const Column = styled.div`
   ${media.mobile`
     min-width: 100%;
     width: 100%;
-    margin: 10px 0;
+    margin: 5px 0;
   `}
 `
 

@@ -25,12 +25,12 @@ const TaskFilter = ({ tags, filters, actions }) => (
           <FilterSearch setSearch={actions.setFilter} search={filters.search} />
         </Column>
       </Row>
-
+{/*
       <Row>
         <Column>
           <FilterDate setDate={actions.setFilter} begining={filters.begining} end={filters.end} />
         </Column>
-      </Row>
+      </Row> */}
     </Accordion>
   </Box>
 )
