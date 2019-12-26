@@ -21,7 +21,7 @@ const Task = ({ task, actions }) => {
           actions.edit(task)
         }}
       >
-        <TaskName>{task.name}</TaskName>
+        <TaskName>{task.index} {task.name}</TaskName>
         <TaskDate>{task.forecast}</TaskDate>
       </Button>
 

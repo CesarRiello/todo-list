@@ -20,9 +20,9 @@ const TaskEdit = ({ history }) => (
 
 TaskEdit.defaultProps = {
   task: {
-    id: '',
     name: '',
-    isCompleted: false
+    isCompleted: false,
+    remind: 0
   }
 }
 TaskEdit.propTypes = {

@@ -1,18 +1,19 @@
 import React, { Fragment } from 'react'
 import Task from 'components/Task'
 import TaskFilter from 'components/TaskFilter'
+import TaskListControls from 'components/TaskListControls'
 import { NoTask } from 'components/Task/Styles'
 import PropTypes from 'prop-types'
 
-const View = ({ tasks, tags, actions, filters }) => (
+const View = props => (
   <Fragment>
-    <TaskFilter tags={tags} actions={actions} filters={filters} />
-
-    {tasks.length ? (
+    {props.tasks.length ? (
       <div>
-        {tasks.map(t => (
-          <Task key={t.id} task={t} actions={actions} />
+        <TaskFilter {...props} />
+        {props.tasks.map(t => (
+          <Task key={t.id} task={t} actions={props.actions} />
         ))}
+        <TaskListControls {...props}></TaskListControls>
       </div>
     ) : (
       <NoTask>
@@ -26,15 +27,12 @@ const View = ({ tasks, tags, actions, filters }) => (
 )
 
 View.defaultProps = {
-  tags: [],
   tasks: []
 }
 
 View.propTypes = {
-  tags: PropTypes.array,
   tasks: PropTypes.array,
-  actions: PropTypes.object.isRequired,
-  filters: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired
 }
 
 export default View

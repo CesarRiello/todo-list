@@ -8,13 +8,26 @@ export const Button = styled.button`
   color: ${style.color.textColor};
   padding: 4px 5px;
   border-radius: 3px;
-  font-size: ${pxRem(14)};
+  font-size: ${pxRem(15)};
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   ${({ active }) => active && 'border: 1px solid black;'}
+
+  ${({ disable }) =>
+    disable &&
+    `
+    opacity: .2;
+    pointer-events: none;
+
+
+    &:hover {
+      opacity: .2;
+    }
+
+  `}
 
   ${({ block }) =>
     block
@@ -39,12 +52,17 @@ export const Check = styled(Button)`
   font-size: ${pxRem(22)};
 `
 
+export const More = styled(Button)`
+  position: ${({ position }) => position || 'static'};
+  font-size: ${pxRem(22)};
+`
+
 export const Primary = styled(Button)`
   background: ${style.color.textColor};
   border: 1px solid black;
   color: ${style.color.white};
   padding: 5px 10px;
   font-weight: 500px;
-  font-size: ${pxRem(14)};
+  font-size: ${pxRem(15)};
   border-radius: 3px;
 `

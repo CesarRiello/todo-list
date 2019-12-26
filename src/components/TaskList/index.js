@@ -10,13 +10,31 @@ class TaskList extends Component {
     search: '',
     status: 'all',
     tag: '',
-    IsOpenFilter: false
+    IsOpenFilter: false,
+    page: 1,
+    itemsPerPage: 5,
+    totalOfTasks: 0
+  }
+
+  componentWillReceiveProps() {
+    const totalOfTasks = this.props.tasks.length
+    this.setState({ totalOfTasks })
+  }
+
+  calculatePagination = () => {
+    const { page, itemsPerPage } = this.state
+    const start = itemsPerPage * (page - 1)
+    const end = itemsPerPage * page
+
+    return [start, end]
   }
 
   setParentState = this.props.setParentState
 
   filterTasks = () => {
     const { begining, end, search, status, tag } = this.state
+    const pagination = this.calculatePagination()
+
     return this.props.tasks
       .filter(
         t =>
@@ -27,14 +45,14 @@ class TaskList extends Component {
       .filter(t => !tag || t.tag === tag)
       .filter(t => (!begining || t.date < begining) && (!end || t.date > end))
       .filter(t => !search || t.name.includes(search))
-      .reverse()
+      .slice(...pagination)
   }
 
   remove = task => {
     deleteTask(
       task,
       () => {
-        const tasks = this.props.tasks.filter(t => t.id !== task.id)
+        const tasks = this.props.tasks.filter(t => t.uuid !== task.uuid)
         this.setParentState({ tasks })
       },
       console.error
@@ -50,7 +68,7 @@ class TaskList extends Component {
     updateTask(
       task,
       () => {
-        const tasks = this.props.tasks.map(t => (t.id === task.id ? task : t))
+        const tasks = this.props.tasks.map(t => (t.uuid === task.uuid ? task : t))
         this.setParentState({ tasks })
       },
       console.error
@@ -74,6 +92,7 @@ class TaskList extends Component {
         tags={this.props.tags}
         filters={this.state}
         actions={actions}
+        history={this.props.history}
       />
     )
   }

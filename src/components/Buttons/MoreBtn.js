@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const MoreBtn = ({ more, ariaLabel }) => (
   <More onClick={more} arial-label={ariaLabel}>
-    <i className="fa fa-times" aria-hidden="true"></i>
+    <i className="fa fa-plus-circle" aria-hidden="true"></i>
   </More>
 )
 

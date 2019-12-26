@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import View from './View'
-import uuidGenerator from 'components/helpers/uuidGenerator'
 import PropTypes from 'prop-types'
 import { saveTask, updateTask } from 'services/api'
+import { dateIso } from 'components/helpers/mask'
 
 class Taskform extends Component {
   state = {
@@ -21,13 +21,12 @@ class Taskform extends Component {
   }
 
   create = task => {
-    const newTask = { ...task, id: uuidGenerator() }
-
     saveTask(
-      newTask,
+      task,
       () => {
-        const tasks = [...this.props.tasks, newTask]
-        this.setParentState({ tasks })
+        const tasks = [...this.props.tasks, task]
+        const _task = { name: '', isCompleted: false }
+        this.setParentState({ tasks, task: _task })
         this.props.history.push('/')
       },
       console.error
@@ -38,7 +37,7 @@ class Taskform extends Component {
     updateTask(
       task,
       () => {
-        const tasks = this.props.tasks.map(t => (t.id === task.id ? task : t))
+        const tasks = this.props.tasks.map(t => (t.uuid === task.uuid ? task : t))
         this.setParentState({ tasks })
         this.props.history.push('/')
       },
@@ -51,6 +50,11 @@ class Taskform extends Component {
     this.setParentState({ task })
   }
 
+  handleChangeDataTime = e => {
+    const task = { ...this.props.task, [e.target.name]: dateIso(e.target.value) }
+    this.setParentState({ task })
+  }
+
   setError = error => {
     this.setState({ errors: { ...this.state.errors, error } })
   }
@@ -58,6 +62,7 @@ class Taskform extends Component {
   render() {
     const actions = {
       handleChange: this.handleChange,
+      handleChangeDataTime: this.handleChangeDataTime,
       save: this.save,
       setError: this.setError
     }
@@ -71,7 +76,7 @@ Taskform.defaultProps = {
     name: '',
     tag: '',
     isCompleted: false,
-    remind: '',
+    remind: 0,
     forecast: ''
   },
   tags: [],

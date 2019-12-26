@@ -1,22 +1,23 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
+// const endPoint = 'http://localhost:4000/'
 const endPoint = 'https://www.czare.com.br/todo-api/'
 
 const taskMapper = {
-  id: '',
+  uuid: '',
   name: '',
   tag: '',
   isCompleted: false,
   completed: '',
   isReminded: false,
-  remind: '',
+  remind: 0,
   created: '',
   forecast: ''
 }
 
 const tagMapper = {
-  id: '',
+  uuid: '',
   tag: '',
   created: ''
 }
@@ -32,11 +33,6 @@ const tagFromApi = (tag, mapper) => ({
   ...mapper,
   ...tag
 })
-
-const taskToApi = task => {
-  const remind = (new Date(task.forecast) || new Date()).getDate() + Number(task.remind)
-  return { ...task, remind }
-}
 
 export const get = resource => axios.get(`${endPoint}${resource}`)
 
@@ -58,7 +54,7 @@ export const saveTask = (task, sucess, error) => {
   const options = {
     method: 'POST',
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
-    data: stringify({ ...taskToApi(task) }),
+    data: stringify({ ...task }),
     url: `${endPoint}tasks`
   }
 
@@ -76,7 +72,7 @@ export const updateTask = (task, sucess, error) => {
     method: 'PUT',
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     data: stringify({ ...task }),
-    url: `${endPoint}tasks/${task.id}`
+    url: `${endPoint}tasks/${task.uuid}`
   }
 
   axios(options)
@@ -90,7 +86,7 @@ export const updateTask = (task, sucess, error) => {
 
 export const deleteTask = (task, sucess, error) => {
   axios
-    .delete(`${endPoint}tasks/${task.id}`)
+    .delete(`${endPoint}tasks/${task.uuid}`)
     .then(response => {
       sucess(response)
     })
@@ -135,7 +131,7 @@ export const updateTag = (tag, sucess, error) => {
     method: 'PUT',
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     data: stringify({ ...tag }),
-    url: `${endPoint}tags/${tag.id}`
+    url: `${endPoint}tags/${tag.uuid}`
   }
 
   axios(options)
@@ -149,7 +145,7 @@ export const updateTag = (tag, sucess, error) => {
 
 export const deleteTag = (tag, sucess, error) => {
   axios
-    .delete(`${endPoint}tags/${tag.id}`)
+    .delete(`${endPoint}tags/${tag.uuid}`)
     .then(response => {
       sucess(response)
     })

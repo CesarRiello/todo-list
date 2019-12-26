@@ -6,7 +6,8 @@ const TagDropDown = ({ tag, tags, setTag }) =>
   tags.length && (
     <Select
       name="tags"
-      initialValue={tag}
+      id="tags"
+      value={tag}
       handleChange={e => {
         let tag = e.target.value
         setTag({ tag })
