@@ -10,7 +10,7 @@ const Task = ({ task, actions }) => {
     <Box>
       <CheckBtn
         checked={task.isCompleted}
-        toggle={() => {
+        onClick={() => {
           actions.update({ ...task, isCompleted: !task.isCompleted })
         }}
       />
@@ -21,7 +21,7 @@ const Task = ({ task, actions }) => {
           actions.edit(task)
         }}
       >
-        <TaskName>{task.index} {task.name}</TaskName>
+        <TaskName>{task.name}</TaskName>
         <TaskDate>{task.forecast}</TaskDate>
       </Button>
 

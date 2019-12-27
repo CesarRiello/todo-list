@@ -50,13 +50,12 @@ const View = ({ actions, task, tags }) => {
               }}
             />
           </Column>
-
         </Row>
 
         <Row>
           <Column>
             <Label block>
-              <i className="fa fa-alarm"></i> Reminder
+              <i className="fa  fa-clock-o"></i> Reminder
             </Label>
             <RemindDropDown value={task.remind} handleChange={actions.handleChange} />
           </Column>
@@ -72,14 +71,14 @@ const View = ({ actions, task, tags }) => {
               <CheckBtn
                 label={task.isCompleted ? 'completed' : 'active'}
                 checked={task.isCompleted}
-                toggle={checked =>
+                onClick={() => {
                   actions.handleChange({
                     target: {
                       name: 'isCompleted',
-                      value: checked
+                      value: !task.isCompleted
                     }
                   })
-                }
+                }}
               />
             </Column>
           </Row>

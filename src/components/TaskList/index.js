@@ -16,9 +16,9 @@ class TaskList extends Component {
     totalOfTasks: 0
   }
 
-  componentWillReceiveProps() {
-    const totalOfTasks = this.props.tasks.length
-    this.setState({ totalOfTasks })
+  static getDerivedStateFromProps(props, state) {
+    const totalOfTasks = props.tasks.length
+    return { ...state, totalOfTasks }
   }
 
   calculatePagination = () => {
@@ -83,7 +83,8 @@ class TaskList extends Component {
       edit: this.edit,
       create: this.create,
       update: this.update,
-      setFilter: this.setFilter
+      setFilter: this.setFilter,
+      setParentState: this.setParentState
     }
 
     return (

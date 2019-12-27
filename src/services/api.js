@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
-// const endPoint = 'http://localhost:4000/'
 const endPoint = 'https://www.czare.com.br/todo-api/'
 
 const taskMapper = {

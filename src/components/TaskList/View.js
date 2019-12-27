@@ -7,9 +7,9 @@ import PropTypes from 'prop-types'
 
 const View = props => (
   <Fragment>
+    <TaskFilter {...props} />
     {props.tasks.length ? (
       <div>
-        <TaskFilter {...props} />
         {props.tasks.map(t => (
           <Task key={t.id} task={t} actions={props.actions} />
         ))}

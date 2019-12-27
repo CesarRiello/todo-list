@@ -20,8 +20,7 @@ const View = ({ tag, tags, handleChange, save, remove }) => (
         </Column>
         <Col3>
           <Primary block type="submit">
-            {' '}
-            SAVE{' '}
+            SAVE
           </Primary>
         </Col3>
       </Row>

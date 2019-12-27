@@ -17,6 +17,7 @@ const TaskListControls = ({ history, filters, actions }) => (
 
     <MoreBtn
       more={() => {
+        actions.setParentState({ task: { name: '', isCompleted: false } })
         history.push('/edit')
       }}
     >

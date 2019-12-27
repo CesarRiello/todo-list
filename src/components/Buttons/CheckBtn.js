@@ -3,16 +3,15 @@ import { Check } from './Styles'
 import { Label } from 'components/Inputs/'
 import PropTypes from 'prop-types'
 
-const CheckBtn = ({ toggle, checked, label, position }) => (
+const CheckBtn = ({ checked, label, position, onClick }) => (
   <Fragment>
     <Check
+      type="button"
       id="isCompleted"
       name="isCompleted"
       position={position}
+      onClick={onClick}
       aria-label="check"
-      onClick={() => {
-        toggle(!checked)
-      }}
     >
       <i className={`fa fa-${checked ? 'check-' : ''}square-o`} aria-hidden="true"></i>
     </Check>
@@ -23,13 +22,15 @@ const CheckBtn = ({ toggle, checked, label, position }) => (
 
 CheckBtn.defaultProps = {
   checked: false,
-  label: ''
+  label: '',
+  position: ''
 }
 
 CheckBtn.propTypes = {
-  toggle: PropTypes.func.isRequired,
   label: PropTypes.string,
-  checked: PropTypes.bool
+  position: PropTypes.string,
+  checked: PropTypes.bool,
+  onClick: PropTypes.func.isRequired
 }
 
 export default CheckBtn

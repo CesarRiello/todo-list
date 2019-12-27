@@ -10,13 +10,13 @@ const FilterTags = ({ tag, tags, setTag }) => (
       <Label htmlFor="all" block>
         <i className="fa fa-tag"></i> Tag
       </Label>
-      <TagDropDown tag={tag} tags={tags} setTag={setTag} />
+      <TagDropDown tag={tag} tags={[{ id: '0', tag: '' }, ...tags]} setTag={setTag} />
     </Column>
   </Row>
 )
 
 FilterTags.defaultProps = {
-  tags: [],
+  tags: [{ id: '0', tag: '' }],
   tag: ''
 }
 

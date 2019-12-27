@@ -13,7 +13,7 @@ const TagDropDown = ({ tag, tags, setTag }) =>
         setTag({ tag })
       }}
     >
-      {[{ id: '0', tag: '' }, ...tags].map(t => (
+      {tags.map(t => (
         <option key={t.id} value={t.tag}>
           {t.tag}
         </option>
@@ -23,7 +23,7 @@ const TagDropDown = ({ tag, tags, setTag }) =>
 
 TagDropDown.defaultProps = {
   tag: '',
-  tags: []
+  tags: [{ id: '0', tag: '' }]
 }
 
 TagDropDown.propTypes = {
