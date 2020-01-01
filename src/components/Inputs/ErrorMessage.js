@@ -1,8 +1,14 @@
 import React from 'react'
-import { ErrorLabel } from './Styles'
+import { Label } from './Styles'
 import PropTypes from 'prop-types'
 
-const ErrorMessage = ({ error }) => error && <ErrorLabel>{error}</ErrorLabel>
+const ErrorMessage = ({ error, htmlFor }) =>
+  error && (
+    <Label block error htmlFor={htmlFor}>
+      <i className="fa fa-exclamation-triangle"></i>
+      <span>{error}</span>
+    </Label>
+  )
 
 ErrorMessage.defaultProps = {
   error: ''

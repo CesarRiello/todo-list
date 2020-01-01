@@ -2,19 +2,13 @@ import styled from 'styled-components'
 import pxRem from 'components/helpers/pxRem'
 
 export const Label = styled.label`
-  color: gray;
   font-size: ${pxRem(14)};
   ${({ block }) => (block ? `display: block;` : `display: inline-block;`)}
-`
-
-export const ErrorLabel = styled.label`
-  color: red;
-  font-size: ${pxRem(12)};
-  display: block;
+  ${({ error }) => (error ? `color: red;` : `color: gray;`)}
 `
 
 export const Text = styled.input`
-  border: 1px solid black;
+  ${({ error }) => (error ? `border: 1px solid red;` : `border: 1px solid black;`)}
   color: black;
   padding: 5px;
   border-radius: 4px;

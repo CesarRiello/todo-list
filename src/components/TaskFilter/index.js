@@ -5,7 +5,7 @@ import Accordion from 'components/Accordion'
 import FilterStatus from './FilterStatus'
 import FilterSearch from './FilterSearch'
 import FilterTags from './FilterTags'
-// import FilterDate from './FilterDate'
+import FilterDate from './FilterDate'
 import PropTypes from 'prop-types'
 
 const TaskFilter = ({ tags, filters, actions }) => (
@@ -25,12 +25,12 @@ const TaskFilter = ({ tags, filters, actions }) => (
           <FilterSearch setSearch={actions.setFilter} search={filters.search} />
         </Column>
       </Row>
-{/*
+
       <Row>
         <Column>
           <FilterDate setDate={actions.setFilter} begining={filters.begining} end={filters.end} />
         </Column>
-      </Row> */}
+      </Row>
     </Accordion>
   </Box>
 )

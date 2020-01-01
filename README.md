@@ -25,7 +25,6 @@ Gerando a versão de produção
 
 
 ## TODO
-- Filtro de data
 - Envio de lembrete com service worker
 - Estatísticas de tags e tempo das tasks
 - Cache de estáticos

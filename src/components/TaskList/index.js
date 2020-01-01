@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import View from './View'
 import PropTypes from 'prop-types'
+import { isBetweenDates } from 'components/helpers/datetime'
 import { deleteTask, updateTask } from 'services/api'
 
 class TaskList extends Component {
   state = {
-    begining: '',
-    end: '',
+    begining: '2011-12-12 23:59:59',
+    end: '2030-12-12 23:59:59',
     search: '',
     status: 'all',
     tag: '',
@@ -43,7 +44,7 @@ class TaskList extends Component {
           (status === 'active' && !t.isCompleted)
       )
       .filter(t => !tag || t.tag === tag)
-      .filter(t => (!begining || t.date < begining) && (!end || t.date > end))
+      .filter(t => isBetweenDates(begining, end, t.forecast))
       .filter(t => !search || t.name.includes(search))
       .slice(...pagination)
   }

@@ -5,7 +5,7 @@ import pxRem from 'components/helpers/pxRem'
 export const Box = styled.div`
   box-shadow: ${style.shadow};
   background: ${style.color.white};
-  padding: 5px;
+  padding: 10px 5px;
   color: ${style.color.grayStrong};
   position: relative;
   margin: 10px 0;
