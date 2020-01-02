@@ -1,6 +1,6 @@
 # To-Do List
 Esse é um projeto simples de lista de tarefas feito em React.
-Você também pode conferir o [Demo online](https://czare.com.br/tasks).
+Você também pode conferir o [Demo online](https://czare.com.br/task).
 
 
 ## Tecnologia
