@@ -45,7 +45,7 @@ class App extends Component {
     }
 
     return (
-      <Router>
+      <Router basename="/task">
         <Header />
         <GlobalStyles />
         <Navigation>

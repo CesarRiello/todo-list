@@ -29,7 +29,5 @@ export const isBetweenDates = (beginFilter, endFilter, datetime) => {
   const timestamp = new Date(datetime).getTime()
 
   if (isNaN(begining) || isNaN(end) || isNaN(timestamp)) return true
-
-  console.log(begining, timestamp, end, timestamp > begining, timestamp < end)
   return timestamp > begining && timestamp < end
 }
